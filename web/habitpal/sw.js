@@ -1,11 +1,13 @@
 // Define a cache name
-const CACHE_NAME = "habitpal-v0.1";
+const CACHE_NAME = "habitpal-v0.3";
 // List the files you want to cache (your app shell)
 const urlsToCache = [
-  "/index.html",
-  "/index.css",
-  "/js/ts/index.js",
-  "/favicon.ico",
+  "/habitpal/",
+  "/habitpal/index.html",
+  "/habitpal/index.css",
+  "/habitpal/js/ts/index.js",
+  "/habitpal/favicon.ico",
+  "/habitpal/manifest.json",
 ];
 
 // Install event: Cache the app shell

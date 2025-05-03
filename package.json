@@ -1,0 +1,17 @@
+{
+  "name": "habitpal",
+  "version": "1.0.0",
+  "main": "web/index.html",
+  "scripts": {
+    "clean": "shx rm -rf dist web/js",
+    "run": "npm run clean && tsc --watch",
+    "build": "npm run clean && tsc --sourceRoot /habitpal && shx mkdir -p dist/habitpal && shx cp -r web/* dist/habitpal && shx cp -r ts dist/habitpal"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "shx": "^0.3.4",
+    "typescript": "^5.0.4"
+  }
+}

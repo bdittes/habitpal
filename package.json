@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "shx": "^0.3.4",
-    "typescript": "^5.0.4"
+    "shx": "^0",
+    "typescript": "^5"
   }
 }

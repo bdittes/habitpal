@@ -2,7 +2,7 @@
   "name": "HabitPal",
   "short_name": "HabitPal",
   "description": "A simple tool to track habits.",
-  "start_url": "web/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#3367D6",

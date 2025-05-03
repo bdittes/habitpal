@@ -26,7 +26,7 @@ const storeRepo = (repo: Repo) => {
 };
 
 const register = () => {
-  navigator.serviceWorker.register('/web/sw.js')
+  navigator.serviceWorker.register('/sw.js')
     .then(registration => {
       console.log('Service Worker registered successfully:', registration.scope);
     })
@@ -56,7 +56,7 @@ const deregister = () => {
 window.addEventListener("load", async (e) => {
   if ('serviceWorker' in navigator) {
     // deregister();
-    // register();
+    register();
   } else {
     console.log('Service Workers not supported in this browser.');
   }

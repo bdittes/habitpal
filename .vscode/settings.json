@@ -1,0 +1,12 @@
+{
+  "editor.fontSize": 20,
+  "liveServer.settings.port": 5501,
+  "editor.formatOnSave": true,
+  "liveServer.settings.root": "/web",
+  "liveServer.settings.mount": [
+    [
+      "/ts",
+      "./ts"
+    ]
+  ]
+}

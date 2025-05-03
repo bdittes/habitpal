@@ -1,15 +1,106 @@
-html,
-body {
+/* Basic reset and body styling */
+body,
+html {
+  margin: 1%;
+  padding: 0;
+  font-family: sans-serif;
   height: 100%;
-  margin: 0;
-  padding: 0px;
-  overflow: hidden;
-  scroll-behavior: auto !important;
+  background-color: #121212;
+  /* Light grey background */
 }
 
-#canvas {
-  width: 100%;
-  height: 100%;
-  background: #111;
-  scroll-behavior: auto !important;
+/* Style the main container */
+#root {
+  max-height: 80vh;
+  /* Ensure it doesn't exceed viewport height */
+  overflow-y: auto;
+  /* Enable vertical scrolling if content overflows */
+  padding: 15px;
+  /* Add some space around the items */
+  box-sizing: border-box;
+  /* Include padding in height calculation */
+  display: flex;
+  flex-direction: column;
+  /* Stack items vertically */
+  gap: 10px;
+  /* Space between items */
+}
+
+/* Style each item */
+.item {
+  background-color: #1e1e1e;
+  /* White background for items */
+  border-radius: 8px;
+  /* Rounded corners */
+  padding: 20px;
+  /* Space inside each item */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  min-height: 50px;
+  /* Give items some minimum height */
+  display: flex;
+  /* Optional: helps align content inside the item */
+  align-items: center;
+  /* Optional: vertically center content inside */
+}
+
+/* Add some placeholder content styling if needed */
+.item p {
+  color: #e0e0e0;
+  margin: 10px;
+}
+
+/* Style the footer */
+#footer {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  border-radius: 8px;
+  /* Vertically align items in the footer */
+  padding: 10px 15px;
+  background-color: #2e2e2e;
+  /* Slightly darker grey for footer */
+  border-top: 1px solid #cccccc;
+  flex-shrink: 0;
+  /* Prevent footer from shrinking */
+  gap: 10px;
+  /* Space between footer elements */
+  padding: 20px;
+  ;
+}
+
+/* Style the text input area */
+#newItem {
+  flex-grow: 1;
+  /* Allow input to take up most space */
+  padding: 8px 12px;
+  border: 1px solid #cccccc;
+  color: #e0e0e0;
+  border-radius: 4px;
+  font-size: 20px;
+  height: 42px;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #101010;
+}
+
+/* Style the buttons */
+#add,
+#clear {
+  padding: 8px 15px;
+  border-radius: 4px;
+  background-color: #3367D6;
+  /* Example blue */
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  font-weight: 500;
+}
+
+#clear {
+  background-color: #d9534f;
+  /* Example red for clear */
 }

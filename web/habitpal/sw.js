@@ -1,5 +1,5 @@
 // Define a cache name
-const CACHE_NAME = "habitpal-v0.3";
+const CACHE_NAME = "habitpal-v0.4";
 // List the files you want to cache (your app shell)
 const urlsToCache = [
   "/habitpal/",

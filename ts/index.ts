@@ -1,50 +1,16 @@
-export type ItemConfig = {
-  section?: string;
-  active?: boolean;
-};
+import { ItemConfig, Event, Item, Repo, NormalizeRepo } from "./types.js";
+import { GapiLoaded, GisLoaded, TriggerDebouncedSave } from "./gsync.js";
 
-// Prefers a.
-export const MergeConfig = (a?: ItemConfig, b?: ItemConfig): ItemConfig => {
-  return {
-    section: a?.section || b?.section,
-    active: a?.active || b?.active
+declare global {
+  interface Window {
+    GapiLoaded: () => void;
+    GisLoaded: () => void;
   }
-};
+}
 
-export type Event = {
-  timestamp: number;
-  amount?: number;
-  config?: ItemConfig;
-};
-
-export type Item = {
-  id: string;
-  config: ItemConfig;
-  events: Event[];
-};
-
-export const NormalizeItem = (item: Item): Item => {
-  item.events.sort((a, b) => b.timestamp - a.timestamp);
-  item.config = {};
-  for (let i = item.events.length - 1; i >= 0; i--) {
-    const e = item.events[i];
-    item.config = MergeConfig(e.config, item.config);
-  };
-  return item;
-};
-
-export type Repo = {
-  items: Item[];
-  sections: string[];
-};
-
-export const NormalizeRepo = (repo: Repo): Repo => {
-  repo.items.sort((a, b) => a.id.localeCompare(b.id));
-  for (const item of repo.items) {
-    NormalizeItem(item);
-  }
-  return repo;
-};
+window.GapiLoaded = GapiLoaded;
+window.GisLoaded = GisLoaded;
+console.log(GapiLoaded);
 
 const loadRepo = (): Repo => {
   const repo = localStorage.getItem("repo");
@@ -73,6 +39,7 @@ const loadRepo = (): Repo => {
 
 const storeRepo = (repo: Repo) => {
   localStorage.setItem("repo", JSON.stringify(repo));
+  TriggerDebouncedSave();
 };
 
 const createP = (text: string, css?: string): HTMLParagraphElement => {

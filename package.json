@@ -8,10 +8,13 @@
     "build": "npm run clean && tsc --sourceRoot /habitpal && shx mkdir -p dist/habitpal && shx cp -r web/habitpal/* dist/habitpal && shx cp -r ts dist/habitpal"
   },
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0-only",
   "description": "",
   "devDependencies": {
     "shx": "^0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@types/gapi": "^0",
+    "@types/gapi.drive": "^0",
+    "@types/google.accounts": "^0"
   }
 }

@@ -15,7 +15,7 @@ let driveFileId: string | null = null; // To store the ID of our data file
 
 // --- UI Elements (Get references in your code) ---
 const signInButton = document.getElementById('signin-button');
-let signOutButton = document.getElementById('signout-button');
+const signOutButton = document.getElementById('signout-button');
 // let syncStatus = document.getElementById('sync-status');
 
 // Called when Google API client library loads
@@ -35,6 +35,7 @@ export function GisLoaded() {
     }
   });
   gisInited = true;
+  console.log(tokenClient);
   maybeEnableButtons(); // Enable buttons if both libraries are ready
 }
 
@@ -45,6 +46,7 @@ async function initializeGapiClient() {
     discoveryDocs: [DISCOVERY_DOC],
   });
   gapiInited = true;
+  console.log(gapiInited);
   maybeEnableButtons(); // Enable buttons if both libraries are ready
 }
 
@@ -57,11 +59,12 @@ function maybeEnableButtons() {
 }
 
 // Initial UI state update, event listeners, etc.
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   // Setup Sign In/Out button listeners, etc.
   if (signInButton) signInButton.onclick = handleAuthClick;
   if (signOutButton) signOutButton.onclick = handleSignOutClick;
   updateUIBasedOnSignInStatus(false/* check initial status? */);
+  console.log(signInButton);
 });
 
 function updateSyncStatus(message: string) {
@@ -87,7 +90,9 @@ function updateUIBasedOnSignInStatus(isSignedIn: boolean) {
 
 function handleAuthClick() {
   // Prompt user to select account and grant access
+  console.log(tokenClient?.requestAccessToken);
   tokenClient?.requestAccessToken();
+  console.log("B");
 }
 
 function handleSignOutClick() {

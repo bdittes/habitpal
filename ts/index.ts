@@ -1,16 +1,16 @@
 import { ItemConfig, Event, Item, Repo, NormalizeRepo } from "./types.js";
-import { GapiLoaded, GisLoaded, TriggerDebouncedSave } from "./gsync.js";
+import { TriggerDebouncedSave } from "./gsync.js";
 
-declare global {
-  interface Window {
-    GapiLoaded: () => void;
-    GisLoaded: () => void;
-  }
-}
+// declare global {
+//   interface Window {
+//     GapiLoaded: () => void;
+//     GisLoaded: () => void;
+//   }
+// }
 
-window.GapiLoaded = GapiLoaded;
-window.GisLoaded = GisLoaded;
-console.log(GapiLoaded);
+// window.GapiLoaded = GapiLoaded;
+// window.GisLoaded = GisLoaded;
+// console.log(GapiLoaded);
 
 const loadRepo = (): Repo => {
   const repo = localStorage.getItem("repo");
@@ -168,39 +168,40 @@ window.addEventListener("load", async (e) => {
   NormalizeRepo(repo);
   render(repo);
 
-  const addButton = document.getElementById("add");
-  if (addButton) {
-    addButton.addEventListener("click", () => {
-      const newItemText = (document.getElementById("newItem") as HTMLTextAreaElement)?.value;
-      if (!newItemText) {
-        return;
-      }
-      const repo = loadRepo();
-      if (repo.items.find((i) => i.id === newItemText)) {
-        return;
-      }
-      const newItem: Item = {
-        id: newItemText,
-        config: {},
-        events: [],
-      };
-      repo.items.push(newItem);
-      NormalizeRepo(repo);
-      render(repo);
-      storeRepo(repo);
-    });
-  }
+  document.getElementById("add-button")?.addEventListener("click", () => {
+    const newItemText = (document.getElementById("newItem") as HTMLTextAreaElement)?.value;
+    if (!newItemText) {
+      return;
+    }
+    const repo = loadRepo();
+    if (repo.items.find((i) => i.id === newItemText)) {
+      return;
+    }
+    const newItem: Item = {
+      id: newItemText,
+      config: {},
+      events: [],
+    };
+    repo.items.push(newItem);
+    NormalizeRepo(repo);
+    render(repo);
+    storeRepo(repo);
+  });
 
-  const clearButton = document.getElementById("clear");
-  if (clearButton) {
-    clearButton.addEventListener("click", () => {
-      if (confirm("Clear all data?")) {
-        const repo: Repo = { items: [], sections: [] };
-        storeRepo(repo);
-        render(repo);
-      }
-    });
-  }
+  document.getElementById("clear-button")?.addEventListener("click", () => {
+    if (confirm("Clear all data?")) {
+      const repo: Repo = { items: [], sections: [] };
+      storeRepo(repo);
+      render(repo);
+    }
+  });
+
+  document.getElementById("debug-button")?.addEventListener("click", () => {
+    const txt = document.getElementById("newItem") as HTMLTextAreaElement;
+    if (txt) {
+      txt.value = JSON.stringify(localStorage.getItem("repo"));
+    }
+  });
 
   setInterval(() => {
     const repo = loadRepo();

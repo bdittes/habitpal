@@ -4,18 +4,18 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#3367D6" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script async defer type="module" src="js/ts/index.js"></script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="GapiLoaded()"></script>
-  <script async defer src="https://accounts.google.com/gsi/client" onload="GisLoaded()"></script>
+  <script type="module" src="js/ts/index.js"></script>
+  <!-- <script async defer src="https://apis.google.com/js/api.js" onload="GapiLoaded()"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="GisLoaded()"></script> -->
 </head>
 
 <body>
   <div id="root"></div>
   <div id="footer">
     <textarea id="newItem"></textarea>
-    <div id="add">Add</div>
-    <div id="clear">Clear</div>
-    <div id="signin-button" class="disabled">In</div>
-    <div id="signout-button" class="disabled">Out</div>
+    <div id="add-button" class="button">Add</div>
+    <div id="clear-button" class="button">Clear</div>
+    <div id="signin-button" class="button disabled">In</div>
+    <div id="debug-button" class="button">Dbg</div>
   </div>
 </body>

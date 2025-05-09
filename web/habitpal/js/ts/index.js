@@ -1,8 +1,14 @@
 import { NormalizeRepo } from "./types.js";
-import { GapiLoaded, GisLoaded, TriggerDebouncedSave } from "./gsync.js";
-window.GapiLoaded = GapiLoaded;
-window.GisLoaded = GisLoaded;
-console.log(GapiLoaded);
+import { TriggerDebouncedSave } from "./gsync.js";
+// declare global {
+//   interface Window {
+//     GapiLoaded: () => void;
+//     GisLoaded: () => void;
+//   }
+// }
+// window.GapiLoaded = GapiLoaded;
+// window.GisLoaded = GisLoaded;
+// console.log(GapiLoaded);
 const loadRepo = () => {
     const repo = localStorage.getItem("repo");
     var res = { items: [], sections: [] };
@@ -151,38 +157,38 @@ window.addEventListener("load", async (e) => {
     const repo = loadRepo();
     NormalizeRepo(repo);
     render(repo);
-    const addButton = document.getElementById("add");
-    if (addButton) {
-        addButton.addEventListener("click", () => {
-            const newItemText = document.getElementById("newItem")?.value;
-            if (!newItemText) {
-                return;
-            }
-            const repo = loadRepo();
-            if (repo.items.find((i) => i.id === newItemText)) {
-                return;
-            }
-            const newItem = {
-                id: newItemText,
-                config: {},
-                events: [],
-            };
-            repo.items.push(newItem);
-            NormalizeRepo(repo);
-            render(repo);
+    document.getElementById("add-button")?.addEventListener("click", () => {
+        const newItemText = document.getElementById("newItem")?.value;
+        if (!newItemText) {
+            return;
+        }
+        const repo = loadRepo();
+        if (repo.items.find((i) => i.id === newItemText)) {
+            return;
+        }
+        const newItem = {
+            id: newItemText,
+            config: {},
+            events: [],
+        };
+        repo.items.push(newItem);
+        NormalizeRepo(repo);
+        render(repo);
+        storeRepo(repo);
+    });
+    document.getElementById("clear-button")?.addEventListener("click", () => {
+        if (confirm("Clear all data?")) {
+            const repo = { items: [], sections: [] };
             storeRepo(repo);
-        });
-    }
-    const clearButton = document.getElementById("clear");
-    if (clearButton) {
-        clearButton.addEventListener("click", () => {
-            if (confirm("Clear all data?")) {
-                const repo = { items: [], sections: [] };
-                storeRepo(repo);
-                render(repo);
-            }
-        });
-    }
+            render(repo);
+        }
+    });
+    document.getElementById("debug-button")?.addEventListener("click", () => {
+        const txt = document.getElementById("newItem");
+        if (txt) {
+            txt.value = JSON.stringify(localStorage.getItem("repo"));
+        }
+    });
     setInterval(() => {
         const repo = loadRepo();
         NormalizeRepo(repo);

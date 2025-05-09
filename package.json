@@ -15,6 +15,7 @@
     "typescript": "^5",
     "@types/gapi": "^0",
     "@types/gapi.drive": "^0",
+    "@types/gapi.client.tasks": "^1",
     "@types/google.accounts": "^0"
   }
 }

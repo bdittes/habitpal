@@ -129,6 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-web/js
-web/shaders
+web/habitpal/js
 .ipynb_checkpoints

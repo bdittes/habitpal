@@ -1,0 +1,6 @@
+name: Typescript HTML CSS
+version: 0.0.1
+schema: v1
+rules:
+  - Always give concise responses
+  - You are helping to build a TS / HTML / CSS app running purely in the client browser, optionally as a PWA.
